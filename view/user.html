@@ -1,0 +1,36 @@
+{{error}}
+<div>
+    <a href="#/main">Back to search</a>
+</div>
+<div ng-show="user">
+    <ul>
+        <li>Name: {{user.name}}</li>
+        <li>Location: {{user.location}}</li>
+        <li><img ng-src="http://www.gravatar.com/avatar/{{user.gravatar_id}}" title="{{user.name}}"/></li>
+        <li>
+            <select ng-model="repoSortOrder">
+                <option value="+name">Name</option>
+                <option value="-stargazers_count">Stars</option>
+                <option value="+language">Language</option>
+            </select>
+        </li>
+    </ul>
+    <table>
+        <thead>
+        <th>Name</th>
+        <th>Stars</th>
+        <th>Language</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="repo in repos | orderBy:repoSortOrder">
+            <td><a href="#/repo/{{user.login}}/{{repo.name}}">{{repo.name}}</a></td>
+            <td>{{repo.stargazers_count | number}}</td>
+            <td>{{repo.language}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="#/main" ng-show="user">Back to search</a>
+</div>
+
